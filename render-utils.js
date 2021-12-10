@@ -18,12 +18,18 @@ export function renderFriend(friend) {
     // put the friend's name.clas in the nameEl
         nameEl.textContent = friend.name;
     // for each friend, set the emojiEl's text content to a different emoji depending on their satisfaction level
-        emojiEl.textContent = friend.satisfaction > 3 ? '🤤':'🍄';
-        if (friend<3){
-            friendEl.classList.add('🎅');
+        if (friend.satsifaction === 1) {
+            emojiEl.textContent = '🍽';
+        };
+        if (friend.satsifaction === 2) {
+            emojiEl.textContent = '👹';
         }
+        if (friend.satsifaction >= 3) {
+            emojiEl.textContent = '😇';
+        } 
+        
             // append the emojiEl and nameEl to the outer div
-        friendEl.append(nameEl,emojiEl);
+        outerDiv.append(nameEl,emojiEl);
     // return the outer div
-    return friendEl;
+    return outerDiv;
 };

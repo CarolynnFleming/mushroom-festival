@@ -66,30 +66,35 @@ function displayFriends() {
     // for each friend in state . . .
     for (let friend of friendData) {
         const friendEl = renderFriend(friend);
-        if(friend.satisfaction >3){
+
+
         // this is a clickable list, so . . .
         friendEl.addEventListener('click', () => {
-            findFriendByName(friend.name, friendData);
         //     add an event listener to each friend
         //         on click, go find the clicked friend in state
-        if (friend.satisfaction  < 3, mushroomCount > 0){
-            friend.satisfaction++;
+        if (mushroomCount <= 0) {
+            alert('mushrooms are all gone!!!');
+        } else if(friend.satisfaction >= 3) {
+            alert('they are full');
+        } else {
+            const matchingFriend = findFriendByName(friend.name, friendData);
+        
+            matchingFriend.satisfaction++;
+
             mushroomCount--;
-            alert('your friend/s satisfaction levels are bellow three feed them some mushrooms' + friendData.name);
-        } 
         //             increment the friends satisfaction and decrement your mushrooms
         //             mushroomCount--;
         //             then display your friends and mushrooms with the updated state
             displayFriends();
             displayMushrooms();
+        }
         // append the friendEl to the friends list in DOM
             friendsEl.append(friendEl);
             })
-        }
+        
     }
     
 }
-
 
 function displayMushrooms() { 
     //clear out the mushroom div
@@ -100,14 +105,5 @@ function displayMushrooms() {
     mushroomsEl.append(mushroomEl)
     }
 }
-
 displayFriends();
 displayMushrooms();
-
-function resetFriendInputEl() {
-    const newFriendData = {
-        name: 'friend',
-        satisfaction: Math.ceil(Math.random() * 5),
-    };
-
-}
